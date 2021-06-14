@@ -51,7 +51,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Form = ({ setSummary }) => {
+const Form = ({ setSummary, setLoader }) => {
   const [data, setData] = useState({
     brand: '',
     year: '',
@@ -95,12 +95,18 @@ const Form = ({ setSummary }) => {
     //   Complete plan increases 50%
     const planIncrease = obtainPlan(plan);
     result = parseFloat(planIncrease * result).toFixed(2); //just 2 digits floating
-    console.log(result);
-    // Total
-    setSummary({
-      quotation: result,
-      data,
-    });
+
+    // Total with loader
+    setLoader(true);
+    setTimeout(() => {
+      // removes spinner
+      setLoader(false);
+      // passes info to main component
+      setSummary({
+        quotation: result,
+        data,
+      });
+    }, 3000);
   };
   return (
     <form onSubmit={handleQuotation}>

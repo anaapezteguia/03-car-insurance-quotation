@@ -44,7 +44,7 @@ const Result = ({ quotation }) => {
           <QuotationText ref={nodeRef}>
             {' '}
             {/* nodeRef */}
-            El total es: {quotation} $
+            The total amount is: {quotation} $
           </QuotationText>
         </CSSTransition>
       </TransitionGroup>

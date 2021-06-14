@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Form from './components/Form';
 import Summary from './components/Summary';
 import Result from './components/Result';
+import Spinner from './components/Spinner';
 
 const Wrapper = styled.div`
   max-width: 600px;
@@ -25,6 +26,9 @@ function App() {
     },
   });
 
+  // spinner
+  const [loader, setLoader] = useState(false);
+
   // extract data
   const { quotation, data } = summary;
 
@@ -32,9 +36,10 @@ function App() {
     <Wrapper>
       <Header title="Car insurance quotation" />
       <FormWrapper>
-        <Form setSummary={setSummary} />
+        <Form setSummary={setSummary} setLoader={setLoader} />
+        {loader ? <Spinner /> : null}
         <Summary data={data} />
-        <Result quotation={quotation} />
+        {!loader ? <Result quotation={quotation} /> : null}
       </FormWrapper>
     </Wrapper>
   );
