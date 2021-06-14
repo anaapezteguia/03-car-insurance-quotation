@@ -26,7 +26,7 @@ function App() {
   });
 
   // extract data
-  const { data } = summary;
+  const { quotation, data } = summary;
 
   return (
     <Wrapper>
@@ -34,6 +34,7 @@ function App() {
       <FormWrapper>
         <Form setSummary={setSummary} />
         <Summary data={data} />
+        <Result quotation={quotation} />
       </FormWrapper>
     </Wrapper>
   );

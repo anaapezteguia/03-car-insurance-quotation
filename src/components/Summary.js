@@ -13,7 +13,7 @@ const SummaryWrapper = styled.div`
 const Summary = ({ data }) => {
   // extract data
   const { brand, year, plan } = data;
-
+  //to show or hide component
   if (brand === '' || year === '' || plan === '') return null;
   return (
     <SummaryWrapper>
