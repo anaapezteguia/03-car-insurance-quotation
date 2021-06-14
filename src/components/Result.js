@@ -26,17 +26,26 @@ const QuotationText = styled.p`
 `;
 
 const Result = ({ quotation }) => {
+  // nodeRef is a ref object that should point to the transitioning child
+  // this avoids warnings because of the react strict mode
+  const nodeRef = React.useRef(null);
+
   return quotation === 0 ? (
     <Message>Choose brand, year and type of insurance plan</Message>
   ) : (
     <QuotationResult>
-      <TransitionGroup component="p" className="resultado">
+      <TransitionGroup component="div" className="resultado">
         <CSSTransition
+          nodeRef={nodeRef} // nodeRef
           classNames="resultado"
           key={quotation}
           timeout={{ enter: 500, exit: 500 }}
         >
-          <QuotationText>El total es: {quotation} $</QuotationText>
+          <QuotationText ref={nodeRef}>
+            {' '}
+            {/* nodeRef */}
+            El total es: {quotation} $
+          </QuotationText>
         </CSSTransition>
       </TransitionGroup>
     </QuotationResult>
