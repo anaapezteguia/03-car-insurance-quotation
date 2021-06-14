@@ -41,12 +41,23 @@ const Button = styled.button`
   }
 `;
 
+const Error = styled.div`
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+`;
+
 const Form = () => {
   const [data, setData] = useState({
     brand: '',
     year: '',
     plan: '',
   });
+  const [error, setError] = useState(false);
+
   // extract state values
   const { brand, year, plan } = data;
 
@@ -57,8 +68,31 @@ const Form = () => {
       [ev.target.name]: ev.target.value,
     });
   };
+
+  // when user presses submit
+  const handleQuotation = (ev) => {
+    ev.preventDefault();
+    if (brand.trim() === '' || year.trim() === '' || plan.trim() === '') {
+      setError(true);
+      return;
+    }
+    setError(false);
+
+    // obtain years difference
+    // subtract 3% value each year
+    //   american ->increases 15%
+    //   asian ->increases 5%
+    //   european ->increases 30%
+
+    //   Basic plan increases 20%
+
+    //   Complete plan increases 50%
+
+    // Total
+  };
   return (
-    <form>
+    <form onSubmit={handleQuotation}>
+      {error ? <Error>All fields are required</Error> : null}
       <Field>
         <Label>Car brand </Label>
         <Select name="brand" value={brand} onChange={obtainInfo}>
@@ -103,7 +137,7 @@ const Form = () => {
         />
         Complete
       </Field>
-      <Button type="button">Quote</Button>
+      <Button type="submit">Quote</Button>
     </form>
   );
 };
