@@ -51,7 +51,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Form = () => {
+const Form = ({ setSummary }) => {
   const [data, setData] = useState({
     brand: '',
     year: '',
@@ -97,6 +97,10 @@ const Form = () => {
     result = parseFloat(planIncrease * result).toFixed(2); //just 2 digits floating
     console.log(result);
     // Total
+    setSummary({
+      quotation: result,
+      data,
+    });
   };
   return (
     <form onSubmit={handleQuotation}>
@@ -105,9 +109,9 @@ const Form = () => {
         <Label>Car brand </Label>
         <Select name="brand" value={brand} onChange={obtainInfo}>
           <option value="">-- Select --</option>
-          <option value="american">American</option>
-          <option value="european">European</option>
-          <option value="asian">Asian</option>
+          <option value="american">american</option>
+          <option value="european">european</option>
+          <option value="asian">asian</option>
         </Select>
       </Field>
       <Field>

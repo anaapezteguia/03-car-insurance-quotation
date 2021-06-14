@@ -26,3 +26,7 @@ export function obtainBrand(brand) {
 export function obtainPlan(plan) {
   return plan === 'basic' ? 1.2 : 1.5;
 }
+// Capitalize
+export function capitalize(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
