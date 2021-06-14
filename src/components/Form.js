@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { obtainYearDifference, obtainBrand, obtainPlan } from '../helper';
+import PropTypes from 'prop-types';
 
 const Field = styled.div`
   display: flex;
@@ -103,7 +104,7 @@ const Form = ({ setSummary, setLoader }) => {
       setLoader(false);
       // passes info to main component
       setSummary({
-        quotation: result,
+        quotation: Number(result),
         data,
       });
     }, 3000);
@@ -159,5 +160,8 @@ const Form = ({ setSummary, setLoader }) => {
     </form>
   );
 };
-
+Form.propTypes = {
+  setSummary: PropTypes.func.isRequired,
+  setLoader: PropTypes.func.isRequired,
+};
 export default Form;

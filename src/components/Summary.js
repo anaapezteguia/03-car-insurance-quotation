@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { capitalize } from '../helper';
+import PropTypes from 'prop-types';
 
 const SummaryWrapper = styled.div`
   padding: 1rem;
@@ -25,5 +26,8 @@ const Summary = ({ data }) => {
       </ul>
     </SummaryWrapper>
   );
+};
+Summary.propTypes = {
+  data: PropTypes.object.isRequired,
 };
 export default Summary;
